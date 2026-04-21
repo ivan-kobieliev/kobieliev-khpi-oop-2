@@ -23,4 +23,4 @@
 
 ## UML-діаграма
 
-![Рисунок](docs/lab01/class-diagram.png)
+![Рисунок](lab01/docs/lab01/class-diagram.png)
