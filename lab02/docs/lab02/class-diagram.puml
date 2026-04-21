@@ -1,0 +1,51 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class ServiceCenter {
+  -requests: List<RepairRequest>
+  -records: List<RepairRecord>
+}
+
+class Client {
+  -requests: List<RepairRequest>
+}
+
+class Device {
+}
+
+class Technician {
+  -records: List<RepairRecord>
+}
+
+class RepairRequest {
+  -client: Client
+  -device: Device
+}
+
+class RepairRecord {
+  -request: RepairRequest
+  -technician: Technician
+  -startDate: String
+  -endDate: String
+}
+
+class Main {
+  +main(args: String[]): void
+}
+
+ServiceCenter "1" o-- "*" RepairRequest : реєструє заявки
+ServiceCenter "1" o-- "*" RepairRecord : зберігає записи ремонту
+
+Client "1" -- "*" RepairRequest : створює
+Device "1" -- "*" RepairRequest : стосується
+
+RepairRequest "1" *-- "*" RepairRecord : породжує
+Technician "1" -- "*" RepairRecord : виконує
+
+Main ..> ServiceCenter
+Main ..> Client
+Main ..> Device
+Main ..> Technician
+Main ..> RepairRequest
+Main ..> RepairRecord
+@enduml
