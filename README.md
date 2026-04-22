@@ -23,10 +23,4 @@
 - RepairRequestTest
 - ServiceCenterTest
 
-Використано:
-- @BeforeMethod
-- groups (smoke, domain, negative)
-- @DataProvider
-- testng.xml
-
 Проведено тестування коректності роботи класів з використанням Maven.
