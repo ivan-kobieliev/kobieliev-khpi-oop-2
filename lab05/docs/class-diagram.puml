@@ -1,0 +1,54 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Device {
+  -manufacturer: String
+  -model: String
+  +Device(manufacturer: String, model: String)
+  +getManufacturer(): String
+  +getModel(): String
+  +toString(): String
+}
+
+class PortableDevice {
+  -weight: double
+  -batteryCapacity: int
+  +PortableDevice(manufacturer: String, model: String, weight: double, batteryCapacity: int)
+  +getWeight(): double
+  +getBatteryCapacity(): int
+  +toString(): String
+}
+
+class Camera {
+  -megapixels: int
+  -hasOpticalZoom: boolean
+  +Camera(manufacturer: String, model: String, weight: double, batteryCapacity: int, megapixels: int, hasOpticalZoom: boolean)
+  +getMegapixels(): int
+  +hasOpticalZoom(): boolean
+  +toString(): String
+}
+
+class ActionCamera <<final>> {
+  -waterproof: boolean
+  -maxDepth: int
+  +ActionCamera(manufacturer: String, model: String, weight: double, batteryCapacity: int, megapixels: int, hasOpticalZoom: boolean, waterproof: boolean, maxDepth: int)
+  +isWaterproof(): boolean
+  +getMaxDepth(): int
+  +toString(): String
+}
+
+class Tablet {
+  -screenSize: double
+  -hasStylus: boolean
+  +Tablet(manufacturer: String, model: String, weight: double, batteryCapacity: int, screenSize: double, hasStylus: boolean)
+  +getScreenSize(): double
+  +hasStylus(): boolean
+  +toString(): String
+}
+
+Device <|-- PortableDevice
+PortableDevice <|-- Camera
+Camera <|-- ActionCamera
+PortableDevice <|-- Tablet
+
+@enduml
