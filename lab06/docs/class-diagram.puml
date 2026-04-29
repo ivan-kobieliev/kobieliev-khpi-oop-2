@@ -1,0 +1,33 @@
+@startuml
+
+abstract class AutomationScenario {
+    - name: String
+    - active: boolean
+    + activate()
+    + deactivate()
+    + execute(): String
+}
+
+class LightingScenario {
+    - brightness: int
+    - autoMode: boolean
+    + execute(): String
+}
+
+class ClimateScenario {
+    - temperature: double
+    - heatingEnabled: boolean
+    + execute(): String
+}
+
+class SecurityScenario {
+    - alarmEnabled: boolean
+    - camerasActive: int
+    + execute(): String
+}
+
+AutomationScenario <|-- LightingScenario
+AutomationScenario <|-- ClimateScenario
+AutomationScenario <|-- SecurityScenario
+
+@enduml
