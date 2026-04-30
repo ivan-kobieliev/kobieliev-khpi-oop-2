@@ -1,0 +1,25 @@
+C:\Users\User\.jdks\openjdk-25.0.2\bin\java.exe "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2025.2.4\lib\idea_rt.jar=52307" -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 -classpath C:\Users\User\IdeaProjects\kobieliev-khpi-oop-2\lab05\target\classes;C:\Users\User\.m2\repository\org\openjdk\jol\jol-core\0.17\jol-core-0.17.jar ua.khpi.oop.lab05.demo.Lab05JolDemo
+# WARNING: Unable to get Instrumentation. Dynamic Attach failed. You may add this JAR as -javaagent manually, or supply -Djdk.attach.allowAttachSelf
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::arrayBaseOffset has been called by org.openjdk.jol.vm.HotspotUnsafe (file:/C:/Users/User/.m2/repository/org/openjdk/jol/jol-core/0.17/jol-core-0.17.jar)
+WARNING: Please consider reporting this to the maintainers of class org.openjdk.jol.vm.HotspotUnsafe
+WARNING: sun.misc.Unsafe::arrayBaseOffset will be removed in a future release
+ua.khpi.oop.lab05.model.ActionCamera object internals:
+OFF  SZ               TYPE DESCRIPTION                      VALUE
+  0   8                    (object header: mark)            0x0000000000000001 (non-biasable; age: 0)
+  8   4                    (object header: class)           0x01043248
+ 12   4   java.lang.String Device.manufacturer              (object)
+ 16   4   java.lang.String Device.model                     (object)
+ 20   4                int PortableDevice.batteryCapacity   1720
+ 24   8             double PortableDevice.weight            0.15
+ 32   4                int Camera.megapixels                27
+ 36   1            boolean Camera.hasOpticalZoom            false
+ 37   1            boolean ActionCamera.waterproof          true
+ 38   2                    (alignment/padding gap)
+ 40   4                int ActionCamera.maxDepth            10
+ 44   4                    (object alignment gap)
+Instance size: 48 bytes
+Space losses: 2 bytes internal + 4 bytes external = 6 bytes total
+
+
+Process finished with exit code 0
