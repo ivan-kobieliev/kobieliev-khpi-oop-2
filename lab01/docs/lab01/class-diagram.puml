@@ -1,0 +1,113 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class ServiceCenter {
+  -centerId: String
+  -name: String
+  -address: String
+  -phone: String
+  +ServiceCenter()
+  +ServiceCenter(centerId: String, name: String, address: String, phone: String)
+  +getCenterId(): String
+  +setCenterId(centerId: String): void
+  +getName(): String
+  +setName(name: String): void
+  +getAddress(): String
+  +setAddress(address: String): void
+  +getPhone(): String
+  +setPhone(phone: String): void
+  +printCenterInfo(): void
+  +toString(): String
+  +equals(obj: Object): boolean
+  +hashCode(): int
+}
+
+class Client {
+  -clientId: String
+  -fullName: String
+  -phone: String
+  -email: String
+  +Client()
+  +Client(clientId: String, fullName: String, phone: String, email: String)
+  +getClientId(): String
+  +setClientId(clientId: String): void
+  +getFullName(): String
+  +setFullName(fullName: String): void
+  +getPhone(): String
+  +setPhone(phone: String): void
+  +getEmail(): String
+  +setEmail(email: String): void
+  +printClientInfo(): void
+  +toString(): String
+  +equals(obj: Object): boolean
+  +hashCode(): int
+}
+
+class Device {
+  -deviceId: String
+  -type: String
+  -brand: String
+  -model: String
+  +Device()
+  +Device(deviceId: String, type: String, brand: String, model: String)
+  +getDeviceId(): String
+  +setDeviceId(deviceId: String): void
+  +getType(): String
+  +setType(type: String): void
+  +getBrand(): String
+  +setBrand(brand: String): void
+  +getModel(): String
+  +setModel(model: String): void
+  +printDeviceInfo(): void
+  +toString(): String
+  +equals(obj: Object): boolean
+  +hashCode(): int
+}
+
+class Technician {
+  -technicianId: String
+  -fullName: String
+  -specialization: String
+  -phone: String
+  +Technician()
+  +Technician(technicianId: String, fullName: String, specialization: String, phone: String)
+  +getTechnicianId(): String
+  +setTechnicianId(technicianId: String): void
+  +getFullName(): String
+  +setFullName(fullName: String): void
+  +getSpecialization(): String
+  +setSpecialization(specialization: String): void
+  +getPhone(): String
+  +setPhone(phone: String): void
+  +printTechnicianInfo(): void
+  +toString(): String
+  +equals(obj: Object): boolean
+  +hashCode(): int
+}
+
+class RepairRequest {
+  -requestId: String
+  -problemDescription: String
+  -status: String
+  -date: String
+  +RepairRequest()
+  +RepairRequest(requestId: String, problemDescription: String, status: String, date: String)
+  +getRequestId(): String
+  +setRequestId(requestId: String): void
+  +getProblemDescription(): String
+  +setProblemDescription(problemDescription: String): void
+  +getStatus(): String
+  +setStatus(status: String): void
+  +getDate(): String
+  +setDate(date: String): void
+  +printRequestInfo(): void
+  +toString(): String
+  +equals(obj: Object): boolean
+  +hashCode(): int
+}
+
+ServiceCenter "1" -- "*" RepairRequest : обробляє
+Client "1" -- "*" RepairRequest : створює
+Device "1" -- "*" RepairRequest : стосується
+Technician "1" -- "*" RepairRequest : виконує
+@enduml
