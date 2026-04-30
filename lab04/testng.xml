@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="RepairModelSuite">
+    <test name="SmokeAndDomainTests">
+        <groups>
+            <run>
+                <include name="smoke"/>
+                <include name="domain"/>
+                <include name="negative"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="ua.khpi.oop.lab04.RepairRequestTest"/>
+            <class name="ua.khpi.oop.lab04.ServiceCenterTest"/>
+            <class name="ua.khpi.oop.lab04.ClientTest"/>
+        </classes>
+    </test>
+</suite>
