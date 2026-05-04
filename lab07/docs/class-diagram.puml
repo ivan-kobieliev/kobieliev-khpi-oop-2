@@ -1,0 +1,43 @@
+@startuml
+title Lab 07. Interfaces.
+
+interface Reservable {
+    +reserve(customerName: String): String
+}
+
+interface Payable {
+    +pay(amount: double): String
+}
+
+class HotelBooking {
+    -hotelName: String
+    -nights: int
+    -reserved: boolean
+    +HotelBooking(hotelName: String, nights: int)
+    +reserve(customerName: String): String
+    +pay(amount: double): String
+}
+
+class TrainTicket {
+    -route: String
+    -reserved: boolean
+    +TrainTicket(route: String)
+    +reserve(customerName: String): String
+    +pay(amount: double): String
+}
+
+class MuseumPass {
+    -museumName: String
+    +MuseumPass(museumName: String)
+    +pay(amount: double): String
+}
+
+Reservable <|.. HotelBooking
+Payable <|.. HotelBooking
+
+Reservable <|.. TrainTicket
+Payable <|.. TrainTicket
+
+Payable <|.. MuseumPass
+
+@enduml
