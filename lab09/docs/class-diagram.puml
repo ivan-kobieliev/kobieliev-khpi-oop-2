@@ -1,0 +1,28 @@
+@startuml
+title Lab 09. Generics
+
+class Player {
+  - name: String
+  - level: int
+}
+
+class GameItem {
+  - itemName: String
+  - power: int
+}
+
+class Achievement {
+  - title: String
+  - completed: boolean
+}
+
+class ProfileEntry<T, U> {
+  - entity: T
+  - metadata: U
+}
+
+ProfileEntry --> Player
+ProfileEntry --> GameItem
+ProfileEntry --> Achievement
+
+@enduml
