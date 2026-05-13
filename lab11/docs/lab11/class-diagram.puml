@@ -1,0 +1,85 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+package "ua.khpi.oop.lab11.model" {
+    class Customer {
+        - id: String
+        - fullName: String
+        - phone: String
+        + Customer(id: String, fullName: String, phone: String)
+        + getId(): String
+        + getFullName(): String
+        + getPhone(): String
+        + toString(): String
+        + equals(obj: Object): boolean
+        + hashCode(): int
+    }
+
+    class Room {
+        - number: int
+        - type: String
+        - pricePerNight: double
+        + Room(number: int, type: String, pricePerNight: double)
+        + getNumber(): int
+        + getType(): String
+        + getPricePerNight(): double
+        + toString(): String
+        + equals(obj: Object): boolean
+        + hashCode(): int
+    }
+
+    class Reservation {
+        - code: String
+        - customer: Customer
+        - room: Room
+        - startDate: LocalDate
+        - endDate: LocalDate
+        + Reservation(code: String, customer: Customer, room: Room, startDate: LocalDate, endDate: LocalDate)
+        + getCode(): String
+        + getCustomer(): Customer
+        + getRoom(): Room
+        + getStartDate(): LocalDate
+        + getEndDate(): LocalDate
+        + updateDates(startDate: LocalDate, endDate: LocalDate): void
+        + toString(): String
+        + equals(obj: Object): boolean
+        + hashCode(): int
+    }
+}
+
+package "ua.khpi.oop.lab11.service" {
+    class ReservationService {
+        - reservationsInOrder: List<Reservation>
+        - reservationsByCode: Map<String, Reservation>
+        - roomsByNumber: Map<Integer, Room>
+        + addRoom(room: Room): void
+        + addReservation(reservation: Reservation): void
+        + findReservationByCode(code: String): Reservation
+        + findReservationsByRoomNumber(roomNumber: int): List<Reservation>
+        + updateReservationDates(code: String, startDate: LocalDate, endDate: LocalDate): boolean
+        + removeReservation(code: String): Reservation
+        + getAllReservations(): List<Reservation>
+        + getReservationsByCode(): Map<String, Reservation>
+        + getRoomsByNumber(): Map<Integer, Room>
+        + getReservationCount(): int
+        + isEmpty(): boolean
+        + buildReservationReport(): String
+    }
+}
+
+package "ua.khpi.oop.lab11.demo" {
+    class Main {
+        + main(args: String[]): void
+    }
+}
+
+Reservation *-- Customer
+Reservation *-- Room
+ReservationService --> Reservation
+ReservationService --> Room
+Main --> ReservationService
+Main --> Customer
+Main --> Room
+Main --> Reservation
+
+@enduml
