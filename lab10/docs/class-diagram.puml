@@ -1,0 +1,47 @@
+@startuml
+title Lab 10. Collections Framework
+
+class Product {
+  - name: String
+  - price: double
+}
+
+class CartItem {
+  - product: Product
+  - quantity: int
+}
+
+class Order {
+  - orderId: String
+  - customerName: String
+}
+
+class StoreContainer<T> {
+  - items: T[]
+  - size: int
+  - capacity: int
+  + add(item: T): void
+  + get(index: int): T
+  + remove(index: int): T
+  + size(): int
+  + capacity(): int
+  + isEmpty(): boolean
+  + iterator(): Iterator<T>
+}
+
+class StoreContainerIterator {
+  - currentIndex: int
+  + hasNext(): boolean
+  + next(): T
+}
+
+interface Iterable<T>
+interface Iterator<T>
+
+CartItem --> Product
+
+StoreContainer ..|> Iterable
+StoreContainerIterator ..|> Iterator
+StoreContainer *-- StoreContainerIterator
+
+@enduml
