@@ -1,0 +1,56 @@
+@startuml
+
+package model {
+
+class PatientVisit {
+  - visitDate : LocalDate
+  - patientCode : String
+  - patientName : String
+  - department : String
+  - prescription : String
+
+  + visitDate() : LocalDate
+  + patientCode() : String
+  + patientName() : String
+  + department() : String
+  + prescription() : String
+}
+
+class VisitReport {
+  - totalVisits : int
+  - therapyVisits : int
+  - cardiologyVisits : int
+
+  + totalVisits() : int
+  + therapyVisits() : int
+  + cardiologyVisits() : int
+}
+
+}
+
+package service {
+
+class MedicalRecordProcessor {
+  + normalizeWhitespace(line : String) : String
+  + parseLine(rawLine : String) : PatientVisit
+  + parseLines(rawLines : List<String>) : List<PatientVisit>
+  + parseOnlyValidLines(rawLines : List<String>) : List<PatientVisit>
+  + summarize(visits : List<PatientVisit>) : VisitReport
+  + buildReport(visits : List<PatientVisit>) : String
+}
+
+}
+
+package demo {
+
+class Main {
+  + main(args : String[]) : void
+}
+
+}
+
+MedicalRecordProcessor --> PatientVisit
+MedicalRecordProcessor --> VisitReport
+Main --> MedicalRecordProcessor
+
+@enduml
