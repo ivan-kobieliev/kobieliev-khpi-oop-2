@@ -1,0 +1,6 @@
+2026-04-10 | PAT-001 | Ivan Petrenko | Therapy | Aspirin 100mg
+2026-04-11 | PAT-002 | Olena Kovalenko | Cardiology | ECG and Bisoprolol
+2026-04-12 | PAT-003 | Andrii Shevchenko | Neurology | MRI examination
+2026-04-13 | PAT-004 | Maria Bondarenko | Therapy | Vitamin D
+bad line without correct format
+2026/04/14 | PAT-005 | Wrong Date | Surgery | Consultation
