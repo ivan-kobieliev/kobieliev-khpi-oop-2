@@ -1,0 +1,34 @@
+@startuml
+
+actor User
+
+participant Main
+participant ReservationCheckThread
+participant ConfirmationThread
+participant LoadReportThread
+
+User -> Main : start application
+
+Main -> ReservationCheckThread : start()
+Main -> ConfirmationThread : start()
+Main -> LoadReportThread : start()
+
+activate ReservationCheckThread
+activate ConfirmationThread
+activate LoadReportThread
+
+ReservationCheckThread -> ReservationCheckThread : check reservations
+ConfirmationThread -> ConfirmationThread : prepare confirmations
+LoadReportThread -> LoadReportThread : generate load report
+
+ReservationCheckThread --> Main : join()
+ConfirmationThread --> Main : join()
+LoadReportThread --> Main : join()
+
+deactivate ReservationCheckThread
+deactivate ConfirmationThread
+deactivate LoadReportThread
+
+Main -> User : print final results
+
+@enduml
