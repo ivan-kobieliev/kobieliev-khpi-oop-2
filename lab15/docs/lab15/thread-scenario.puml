@@ -1,0 +1,28 @@
+@startuml
+
+actor Main
+
+participant "QueueExperiment" as QE
+participant "OperatorThread-1" as T1
+participant "OperatorThread-2" as T2
+participant "SafeRequestQueue" as Queue
+
+Main -> QE : runSafeExperiment()
+
+QE -> T1 : start()
+QE -> T2 : start()
+
+par Parallel execution
+    T1 -> Queue : addRequest()
+    T1 -> Queue : processRequest()
+else
+    T2 -> Queue : addRequest()
+    T2 -> Queue : processRequest()
+end
+
+QE -> T1 : join()
+QE -> T2 : join()
+
+QE -> Queue : getProcessedCount()
+
+@enduml

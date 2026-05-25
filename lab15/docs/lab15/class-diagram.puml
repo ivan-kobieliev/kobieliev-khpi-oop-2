@@ -1,0 +1,69 @@
+@startuml
+
+class Request {
+    - id : int
+    - clientName : String
+    - text : String
+    + Request(id : int, clientName : String, text : String)
+    + getId() : int
+    + getClientName() : String
+    + getText() : String
+    + toString() : String
+}
+
+class UnsafeRequestQueue {
+    - queueSize : int
+    - processedCount : int
+    + addRequest(request : Request) : void
+    + processRequest() : Request
+    + getQueueSize() : int
+    + getProcessedCount() : int
+}
+
+class SafeRequestQueue {
+    - requests : List<Request>
+    - lock : Object
+    - processedCount : int
+    + addRequest(request : Request) : void
+    + processRequest() : Request
+    + getQueueSize() : int
+    + getProcessedCount() : int
+}
+
+class OperatorTask {
+    - unsafeQueue : UnsafeRequestQueue
+    - safeQueue : SafeRequestQueue
+    - operationsCount : int
+    - safeMode : boolean
+    + OperatorTask(unsafeQueue : UnsafeRequestQueue, operationsCount : int)
+    + OperatorTask(safeQueue : SafeRequestQueue, operationsCount : int)
+    + run() : void
+}
+
+class QueueExperiment {
+    + runUnsafeExperiment(threadCount : int, operationsPerThread : int) : void
+    + runSafeExperiment(threadCount : int, operationsPerThread : int) : void
+    + runSequentialExperiment(operationsCount : int) : void
+    - startAndJoinAll(threads : Thread[]) : void
+}
+
+class Main {
+    + main(args : String[]) : void
+}
+
+interface Runnable {
+    + run() : void
+}
+
+OperatorTask ..|> Runnable
+
+UnsafeRequestQueue ..> Request
+SafeRequestQueue --> Request
+OperatorTask --> UnsafeRequestQueue
+OperatorTask --> SafeRequestQueue
+QueueExperiment --> OperatorTask
+QueueExperiment --> UnsafeRequestQueue
+QueueExperiment --> SafeRequestQueue
+Main --> QueueExperiment
+
+@enduml
