@@ -1,0 +1,87 @@
+@startuml
+
+class Customer {
+    - id : String
+    - name : String
+    - phone : String
+    + getId() : String
+    + getName() : String
+    + getPhone() : String
+}
+
+class Room {
+    - number : String
+    - capacity : int
+    - pricePerNight : double
+    + getNumber() : String
+    + getCapacity() : int
+    + getPricePerNight() : double
+}
+
+class Reservation {
+    - id : String
+    - customer : Customer
+    - room : Room
+    - startDate : LocalDate
+    - endDate : LocalDate
+    - guests : int
+    + getNights() : long
+    + getTotalPrice() : double
+    + fitsRoomCapacity() : boolean
+}
+
+class ReservationService {
+    + isReservationValid(reservation : Reservation) : boolean
+    + buildConfirmation(reservation : Reservation) : String
+    + countValidReservations(reservations : List) : long
+    + calculateTotalIncome(reservations : List) : double
+    + buildLoadReport(reservations : List) : String
+}
+
+class ReservationCheckThread {
+    - reservations : List
+    - service : ReservationService
+    - results : List
+    + run() : void
+    + getResults() : List
+}
+
+class ConfirmationTask {
+    - reservations : List
+    - service : ReservationService
+    - confirmations : List
+    + run() : void
+    + getConfirmations() : List
+}
+
+class LoadReportTask {
+    - reservations : List
+    - service : ReservationService
+    - report : String
+    + run() : void
+    + getReport() : String
+}
+
+class Main
+
+Customer <-- Reservation
+Room <-- Reservation
+
+ReservationService <-- ReservationCheckThread
+ReservationService <-- ConfirmationTask
+ReservationService <-- LoadReportTask
+
+Reservation <-- ReservationCheckThread
+Reservation <-- ConfirmationTask
+Reservation <-- LoadReportTask
+
+ReservationCheckThread --|> Thread
+ConfirmationTask ..|> Runnable
+LoadReportTask ..|> Runnable
+
+Main --> ReservationCheckThread
+Main --> ConfirmationTask
+Main --> LoadReportTask
+Main --> ReservationService
+
+@enduml
