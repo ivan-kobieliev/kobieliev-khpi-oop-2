@@ -40,4 +40,4 @@ jobs:
             -o build/native/libtemperatureconverter.so
 
       - name: Run tests
-        run: mvn test
+        run: mvn test -Djava.library.path=build/native
