@@ -37,13 +37,11 @@
                 <version>3.2.5</version>
 
                 <configuration>
-                    <systemPropertyVariables>
-                        <java.library.path>
-                            ${project.basedir}/build/native
-                        </java.library.path>
-                    </systemPropertyVariables>
+                    <argLine>
+                        -Djava.library.path=${project.basedir}/build/native
+                        --enable-native-access=ALL-UNNAMED
+                    </argLine>
                 </configuration>
-
             </plugin>
 
         </plugins>
