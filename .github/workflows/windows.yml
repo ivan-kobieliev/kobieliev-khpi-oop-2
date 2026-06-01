@@ -25,7 +25,9 @@ jobs:
       - name: Generate JNI headers
         shell: pwsh
         run: |
-          mkdir -p native-headers target/classes
+          New-Item -ItemType Directory -Force -Path native-headers
+          New-Item -ItemType Directory -Force -Path target\classes
+          
           javac -h native-headers \
             -d target/classes \
             src/main/java/ua/khpi/oop/lab16/NativeTemperatureConverter.java
@@ -33,10 +35,11 @@ jobs:
       - name: Build native library
         shell: pwsh
         run: |
-          mkdir -p build/native
+          New-Item -ItemType Directory -Force -Path build\native
+          
           clang++ -std=c++17 -shared -fPIC \
-            -I"$JAVA_HOME/include" \
-            -I"$JAVA_HOME/include/linux" \
+            -I"$env:JAVA_HOME\include" \
+            -I"$env:JAVA_HOME\include\win32" \
             -Inative-headers \
             native/temperature_converter.cpp \
             -o build/native/libtemperatureconverter.dll
