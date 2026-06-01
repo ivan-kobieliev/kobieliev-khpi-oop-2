@@ -26,20 +26,20 @@ jobs:
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force -Path native-headers
-          New-Item -ItemType Directory -Force -Path target\classes
+          New-Item -ItemType Directory -Force -Path target/classes
           
           javac -h native-headers -d target/classes src/main/java/ua/khpi/oop/lab16/NativeTemperatureConverter.java
 
       - name: Build native library
         shell: pwsh
         run: |
-          New-Item -ItemType Directory -Force -Path build\native
+          New-Item -ItemType Directory -Force -Path build/native
           
-          clang++ -std=c++17 -shared -fPIC \
-            -I"$env:JAVA_HOME\include" \
-            -I"$env:JAVA_HOME\include\win32" \
-            -Inative-headers \
-            native/temperature_converter.cpp \
+          clang++ -std=c++17 -shared `
+            -I"$env:JAVA_HOME/include" `
+            -I"$env:JAVA_HOME/include\win32" `
+            -Inative-headers `
+            native/temperature_converter.cpp `
             -o build/native/libtemperatureconverter.dll
 
       - name: Run tests
